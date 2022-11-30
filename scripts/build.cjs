@@ -32,11 +32,12 @@ function readBase64(filepath) {
 }
 
 function getSortedFiles(filepath, ext) {
-  return glob.sync(path.join(filepath, `*.${ext}`)).sort((a, b) => {
-    if (a < b) return -1;
-    if (a > b) return 1;
-    return 0;
-  });
+  const filenameNum = (filename) =>
+    parseInt(path.basename(filename).split(".")[0]);
+
+  return glob
+    .sync(path.join(filepath, `*.${ext}`))
+    .sort((a, b) => filenameNum(a) - filenameNum(b));
 }
 
 //#endregion Helpers
