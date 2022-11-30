@@ -1,9 +1,9 @@
 {
   "version": 0,
   "tutorials": {
-    "test": {
-      "name": "Test",
-      "description": "This is not a real tutorial. It is for testing purposes only.",
+    "string-tables": {
+      "name": "String Tables",
+      "description": "Learn how to read, write, and edit string tables.",
       "requiredApiVersion": "0.1.0"
     }
   }

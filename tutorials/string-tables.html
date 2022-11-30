@@ -1,0 +1,10 @@
+<p>When dealing with string tables, you'll need to use the <code>StringTableResource</code> class from <a href="https://sims4toolkit.com/#/docs/models/latest/resources/StringTableResource" target="_blank">@s4tk/models</a>.</p>
+<h4 class="text-subtle font-bold text-xm">CREATING</h4>
+<p>To create a new, empty string table, you can use <code>new StringTableResource()</code>.</p>
+<p>Alternatively, if you have a buffer that contains binary STBL data, you can use the <code>StringTableResource.from(buffer)</code> method.</p>
+<h4 class="text-subtle font-bold text-xm">EDITING</h4>
+<p>The <code>addAndHash()</code> method will add the given string to the table, and use its 32-bit hash as its key.</p>
+<p>TODO</p>
+<h4 class="text-subtle font-bold text-xm">WRITING</h4>
+<p>In order to save a string table, you need to get its buffer. You can do this with the <code>getBuffer()</code> method.</p>
+<p>In this sandbox environment, you can use <code>Sandbox.download()</code> to download your string table.</p>
