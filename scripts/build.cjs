@@ -73,7 +73,7 @@ tutorialDirs.forEach((tutorialKey) => {
   for (let i = 0; i < scripts.length; ++i) {
     pages.push({
       script: scripts[i],
-      html: htmls[i],
+      guide: htmls[i],
     });
   }
 
