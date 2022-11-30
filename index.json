@@ -1,0 +1,11 @@
+{
+  "version": 0,
+  "rootUrl": "",
+  "tutorials": {
+    "test": {
+      "name": "Test",
+      "description": "This is not a real tutorial. It is for testing purposes only.",
+      "requiredApiVersion": "0.1.0"
+    }
+  }
+}
