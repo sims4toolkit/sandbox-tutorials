@@ -4,6 +4,8 @@ const glob = require("glob");
 
 //#region Constants
 
+const indent = false;
+
 const srcDir = path.resolve(__dirname, "../src");
 
 const outDir = path.resolve(__dirname, "../generated");
@@ -93,7 +95,10 @@ tutorialDirs.forEach((tutorialKey) => {
 
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
-fs.writeFileSync(path.join(outDir, "index.json"), JSON.stringify(masterIndex));
+fs.writeFileSync(
+  path.join(outDir, "index.json"),
+  JSON.stringify(masterIndex, null, indent ? 2 : 0)
+);
 
 const tutorialsOutDir = path.join(outDir, "tutorials");
 if (!fs.existsSync(tutorialsOutDir))
@@ -102,7 +107,7 @@ if (!fs.existsSync(tutorialsOutDir))
 tutorialDatas.forEach((data) => {
   fs.writeFileSync(
     path.join(tutorialsOutDir, `${data.key}.json`),
-    JSON.stringify(data)
+    JSON.stringify(data, null, indent ? 2 : 0)
   );
 });
 
