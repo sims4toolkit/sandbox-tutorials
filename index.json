@@ -8,7 +8,7 @@
       "tags": [
         "Sandbox"
       ],
-      "requiredApiVersion": "0.1.0",
+      "apiVersion": "0.1.0",
       "hasSolution": false,
       "hasMedia": true
     },
@@ -19,7 +19,7 @@
       "tags": [
         "Sandbox"
       ],
-      "requiredApiVersion": "0.1.0",
+      "apiVersion": "0.1.0",
       "hasSolution": false,
       "hasMedia": false
     },
@@ -30,7 +30,7 @@
       "tags": [
         "Models"
       ],
-      "requiredApiVersion": "0.1.0",
+      "apiVersion": "0.1.0",
       "hasSolution": true,
       "hasMedia": true
     },
@@ -41,7 +41,7 @@
       "tags": [
         "Models"
       ],
-      "requiredApiVersion": "0.1.0",
+      "apiVersion": "0.1.0",
       "hasSolution": true,
       "hasMedia": true
     }

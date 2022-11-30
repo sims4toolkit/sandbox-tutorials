@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "author": "frankkulak",
   "license": "MIT",
+  "main": "scripts/build.cjs",
+  "scripts": {
+    "build": "node ."
+  },
   "devDependencies": {
     "@s4tk/compression": "^0.2.0",
     "@s4tk/encoding": "^0.1.4",
@@ -11,6 +15,8 @@
     "@s4tk/models": "^0.6.5",
     "@s4tk/tunables": "^0.2.0",
     "@s4tk/xml-dom": "^0.2.4",
-    "@types/node": "^18.11.9"
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.11.9",
+    "glob": "^8.0.3"
   }
 }
