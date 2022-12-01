@@ -1,12 +1,40 @@
 <h2>Node Parity</h2>
-<p>Although this sandbox uses JavaScript in your browser, it is intended to teach you JavaScript that can run in Node. To make the conversion to Node easier, the sandbox provides implementations for some Node features, such as <code>require</code> and <code>Buffer</code>.</p>
+<p>
+  Although the sandbox uses browser JavaScript, it is intended to mock a Node
+  environment. As such, the sandbox provides implementations for some Node
+  features, such as <code>require()</code> and <code>Buffer</code>.
+</p>
+
+<h4>Importing S4TK Modules</h4>
+<p>
+  You can import S4TK modules exactly as you would in Node, using
+  <code>require()</code>. Imports in this sandbox are at full parity with the
+  S4TK Node library, so you can copy your code directly into Node and it should
+  "just work" (minus the <code>Sandbox</code> functions).
+</p>
+<p>
+  However, since this is a browser, you do NOT have access to any Node modules
+  other than S4TK. This includes <code>fs</code>, the Node file system. When
+  converting S4TK scripts from the sandbox to Node, you'll have to replace
+  <code>import()</code> with <code>readFileSync()</code> and
+  <code>download()</code> with <code>writeFileSync()</code>.
+</p>
+
 <h4>Buffers</h4>
-<p>Buffers are very important in S4TK, so they had to be included as a first class citizen in the sandbox. You can use buffers here just as you would in Node - no imports are required.</p>
-<p>If you </p>
-<h4>Require Imports</h4>
-<p>You can import S4TK modules exactly as you would in Node, using <code>require</code>. The <code>require</code> function provided by this sandbox is at full parity with the S4TK Node library, so you can copy your code directly into Node and it should just work (minus the <code>Sandbox</code> functions).</p>
-<p>However, since this is a browser, you do NOT have access to any Node modules other than S4TK. This includes <code>fs</code>, the Node file system.</p>
-<h4>The File System</h4>
-<p>Since working with files is a very important part of S4TK, the sandbox has its own file system for you to use. It involves uploading files as media so that they can be imported, and downloading files to save them.</p>
-<p>While in a tutorial, you do not have access to your sandbox filesystem. Instead, you are able to access media files that are a part of the tutorial itself.</p>
-<p>This tutorial includes a media file called "Sample.stbl".</p>
+<p>
+  Buffers are very important in S4TK, as they are used to read and write files.
+  The buffers returned from <code>import()</code> and resources'
+  <code>getBuffer()</code> methods are at full parity with buffers in Node.
+</p>
+<p>
+  In fact, if you need to use the <code>Buffer</code> class (you probably don't,
+  but in case you do), you can use it just as you would in Node - no import
+  required.
+</p>
+
+<h4>Final Notes</h4>
+<p>
+  If you see code in this script that you don't understand, such as
+  <code>StringTableResource</code> and <code>formatStringKey()</code>, don't
+  worry about it. These are explained in other tutorials.
+</p>
