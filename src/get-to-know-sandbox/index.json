@@ -3,6 +3,7 @@
   "description": "Learn how to use the sandbox and how it compares to a Node environment.",
   "docs": null,
   "apiVersion": "0.1.0",
+  "recommended": true,
   "tags": [
     "Sandbox",
     "Beginner"
