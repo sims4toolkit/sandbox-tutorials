@@ -1,0 +1,9 @@
+{
+  "name": "File Generation",
+  "description": "Learn how to mass generate resources like tuning and SimData.",
+  "docs": null,
+  "apiVersion": "0.1.0",
+  "tags": [
+    "Advanced"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "String Tables (Advanced)",
+  "description": "Learn advanced techniques with string tables, like searching, generation, and batch fixes.",
+  "docs": null,
+  "apiVersion": "0.1.0",
+  "tags": [
+    "Models",
+    "Advanced"
+  ]
+}

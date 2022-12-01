@@ -44,10 +44,12 @@ function getSortedFiles(filepath, ext) {
 
 //#region Generation
 
-const validTags = new Set(readJson(path.join(srcDir, "tags.json")));
+const tagsList = readJson(path.join(srcDir, "tags.json"));
+const tagsSet = new Set(tagsList);
 
 const masterIndex = {
   version: 0,
+  tags: tagsList,
   tutorials: {},
 };
 
@@ -58,7 +60,7 @@ tutorialDirs.forEach((tutorialKey) => {
   const tutorialIndex = readJson(path.join(tutorialDir, "index.json"));
 
   tutorialIndex.tags.forEach((tag) => {
-    if (!validTags.has(tag)) throw new Error(`Tag '${tag}' is not recognized.`);
+    if (!tagsSet.has(tag)) throw new Error(`Tag '${tag}' is not recognized.`);
   });
 
   masterIndex.tutorials[tutorialKey] = {

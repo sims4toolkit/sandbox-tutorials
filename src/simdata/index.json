@@ -1,0 +1,10 @@
+{
+  "name": "SimData",
+  "description": "Learn how to create, read, edit, and write SimData resources.",
+  "docs": "https://sims4toolkit.com/#/docs/models/latest/resources/SimDataResource",
+  "apiVersion": "0.1.0",
+  "tags": [
+    "Models",
+    "Beginner"
+  ]
+}
