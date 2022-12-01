@@ -1,0 +1,10 @@
+{
+  "name": "Hashing",
+  "description": "Learn how to create and format FNV hashes.",
+  "docs": "https://sims4toolkit.com/#/docs/hashing",
+  "apiVersion": "0.1.0",
+  "tags": [
+    "Utilities",
+    "Beginner"
+  ]
+}
