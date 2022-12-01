@@ -1,2 +1,36 @@
 <h2>String Table Binaries</h2>
-<p>TODO</p>
+<p>
+  In order for the <code>StringTableResource</code> model to be useful at all,
+  you need to be able to load one from a STBL binary, as well as write it as
+  one. Fortunately, this is extremely easy.
+</p>
+
+<h4>Reading a STBL Binary</h4>
+<p>
+  Before you can create a <code>StringTableResource</code> object, you have to
+  get your hands on a buffer that contains binary STBL data.
+</p>
+<p>
+  In the sandbox, you can use <code>await Sandbox.import(filename)</code> to
+  load a media file. This tutorial has an included media file called
+  "Sample.stbl" that contains binary STBL data.
+</p>
+
+<h4>Writing a STBL Binary</h4>
+<p>
+  To save a <code>StringTableResource</code> object as a file, you have to get
+  its buffer with the <code>getBuffer()</code> method. If you view the S4TK
+  documentation, you'll see that this method has some optional arguments, but
+  for the most part, you don't have to worry about them.
+</p>
+<p>
+  In the sandbox, you can use <code>Sandbox.download(filename, buffer)</code> to
+  save the string table to your computer.
+</p>
+
+<h4>Note about Node</h4>
+<p>
+  When using S4TK in Node, remember that <code>import()</code> and
+  <code>download()</code> are not available. You'll have to use the
+  <code>fs</code> Node module to read & write files.
+</p>
