@@ -1,0 +1,43 @@
+<h2>Writing & Running Scripts</h2>
+<p>
+  Now that you're familiar with the sandbox interface, functions, and Node
+  compatibility, you're almost ready to get started with the main editor and
+  file system.
+</p>
+<p>
+  But, before you go clicking that
+  <img src="./assets/terminal-outline.svg" class="inline-svg" /> button, here
+  are a couple of final notes.
+</p>
+
+<h4>Running Scripts in Scripts</h4>
+<p>
+  The scripts you have saved in your file system are allowed to call each other
+  by name, and can even pass values to one another. Since each individual script
+  is wrapped in an asynchronous function, you can use the
+  <code>return</code> keyword in one script, and <code>await</code> when calling
+  it in another.
+</p>
+<p>
+  Tutorials do NOT have access to the file system, and therefore cannot run
+  other scripts. If you run the script for this page, you'll see an error.
+</p>
+<p>
+  To call a script from another script, use
+  <code>Sandbox.runScript(filename: string)</code>. Like <code>import()</code>,
+  this is an async function, so you <strong>must</strong> use the
+  <code>await</code> keyword in order to get its value.
+</p>
+
+<h4>You're Done!</h4>
+<p>
+  It's time to check out the main editor and file system - click
+  <img src="./assets/terminal-outline.svg" class="inline-svg" /> in the navbar
+  to get there.
+</p>
+<p>
+  Once in the main editor, you'll see an example script that demonstrates
+  everything you'd read about in this tutorial. The script "helloWorld" gets a
+  string table from the "loadSampleSTBL" script, which reads the
+  "SampleSTBL.stbl" media file into a <code>StringTableResource</code> object.
+</p>
