@@ -1,10 +1,10 @@
 {
-  "name": "String Tables",
-  "description": "Learn how to create, read, edit, and write string tables.",
+  "name": "String Tables (Advanced)",
+  "description": "Learn more advanced techniques involving string tables.",
   "docs": "https://sims4toolkit.com/#/docs/models/latest/resources/StringTableResource",
   "apiVersion": "0.1.0",
   "tags": [
     "Models",
-    "Beginner"
+    "Advanced"
   ]
 }
