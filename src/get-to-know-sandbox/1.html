@@ -1,0 +1,54 @@
+<h2>Sandbox Functions</h2>
+<p>
+  The sandbox has several built-in functions, such as <code>output()</code> and
+  <code>test()</code> which were mentioned on the previous page. This page will
+  teach you about the other sandbox functions.
+</p>
+
+<h4>The File System</h4>
+<p>
+  In the file system, there are two types of files: scripts and media. Scripts
+  are the JavaScript files that you write & run, and media files can contain any
+  data you want, such as JSON, string tables, or packages. Scripts can import
+  media files and use them however they please.
+</p>
+<p>
+  Tutorials do not have access to the main sandbox's file system, but some of
+  them provide files of their own. This tutorial provides a media file called
+  "Sample.stbl", which is a string table containing one entry.
+</p>
+
+<h4>Importing Media Files</h4>
+<p>
+  You can import media files with <code>Sandbox.import(filename: string)</code>,
+  which is an <strong>async</strong> function that returns a Buffer. The scripts
+  you write are executed in the context of an async function, which means you
+  are allowed to use top-level <code>await</code>.
+</p>
+<p>
+  If that last paragraph went over your head, don't worry about it - just look
+  at how the <code>import()</code> function is used in the sample script and use
+  it like that. Note that using <code>await</code> is
+  <strong>very</strong> important - if you forget it, the import function will
+  not return the value you're expecting it to.
+</p>
+
+<h4>Downloading Files</h4>
+<p>
+  You can download anything you want using the
+  <code>Sandbox.download(filename: string, content: string | Buffer)</code>
+  function.
+</p>
+<p>
+  The <code>download()</code> function will not download your file immediately,
+  but rather it will queue it to be downloaded when the script is done. If only
+  one file is queued, it will download as-is. If multiple files are queued, they
+  will be zipped and then downloaded as one. This means that you can use
+  <code>download()</code> multiple times, or even in a loop, and you don't have
+  to worry about it cluttering your downloads folder.
+</p>
+<p>
+  After running this script, a file called
+  "Get_to_Know_the_Sandbox.downloads.zip" should automatically download, and it
+  should contain two files: "MyStbl.stbl" and "MyText.txt".
+</p>
