@@ -18,44 +18,44 @@ stbl.addAndHash("Second", "creatorName:string_Second");
 // add the string "Third", with key = 0x12345678
 stbl.add(0x12345678, "Third");
 
-// Challenge 1: Can you add the string "Fourth" with any key?
-
-// TODO: Add the string "Fourth" here
-
-// this test will verify that you added "Fourth" correctly
-Sandbox.test("Challenge 1", stbl.entries[3]?.value === "Fourth");
-
 // ==================================================
 // Getting Strings
 
 // get a string by its key
-stbl.getByKey(0x3b83da79); // first entry
+const first = stbl.getByKey(0x3b83da79); // first entry
+Sandbox.output(`First value: "${first.value}"`);
 
 // get a string by its value
-stbl.getByValue("Second"); // second entry
+const second = stbl.getByValue("Second"); // second entry
+Sandbox.output(`Second value: "${second.value}"`);
 
-// get a string by its index
-stbl.entries[2]; // third entry
-
-// Challenge 2: Can you get the fourth entry?
-
-let fourthEntry;
-
-// TODO: set the value of `fourthEntry`
-
-// this line will verify that you retrieved `fourthEntry` correctly
-Sandbox.test("Challenge 2", fourthEntry?.value === "Fourth");
+// get a string by its index (remember, indices start at 0!)
+const third = stbl.entries[2]; // third entry
+Sandbox.output(`Third value: "${third.value}"`);
 
 // ==================================================
 // Editing Strings
 
-// edit the first string's key
-// TODO:
+Sandbox.output(`Before edit: ${first.key} = "${first.value}"`);
 
-// edit a string's value
-// TODO:
+// edit the first string's key
+first.key = 12345;
+
+// edit the first string's value
+first.value = "New first!";
+
+Sandbox.output(`After edit: ${first.key} = "${first.value}"`);
 
 // ==================================================
 // Deleting Strings
 
-// TODO:
+Sandbox.output(`Size before deleting: ${stbl.size}`);
+
+// delete the first entry by its key
+stbl.deleteByKey(12345);
+
+// find an entry by its value, then delete by its ID
+const toDelete = stbl.getByValue("Second");
+stbl.delete(toDelete.id);
+
+Sandbox.output(`Size after deleting: ${stbl.size}`);

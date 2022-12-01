@@ -1,12 +1,71 @@
 <h2>StringTableResource</h2>
-<p>When dealing with string tables, you'll need to use the <code>StringTableResource</code> class from @s4tk/models.</p>
+<p>
+  When dealing with string tables, you'll need to use the
+  <code>StringTableResource</code> class from @s4tk/models.
+</p>
+
 <h4>Creating STBL</h4>
-<p>To create a new, empty string table, you can use <code>new StringTableResource()</code>.</p>
+<p>
+  To create a new, empty string table, you can use
+  <code>new StringTableResource()</code>.
+</p>
+
 <h4>Adding Strings</h4>
-<p>The <code>addAndHash(string)</code> method will add the given string to the table, and use its 32-bit hash as its key.</p>
-<p>The <code>addAndHash(string, toHash)</code> method will add the given string to the table, and use the 32-bit hash of the <code>toHash</code> argument as its key.</p>
-<p>The <code>add(key, string)</code> method will add the given string to the table with the given key.</p>
+<p>
+  The <code>addAndHash(string)</code> method will add the given string to the
+  table, and use its 32-bit hash as its key. While convenient, it may not be the
+  best idea to use this function in production - you want to make sure that your
+  string keys are unique.
+</p>
+<p>
+  The <code>addAndHash(string, toHash)</code> method will add the given string
+  to the table, and use the 32-bit hash of the <code>toHash</code> argument as
+  its key. This is a bit "safer" than hashing the string itself, because you can
+  append your creator name to the front, increasing the liklihood that your key
+  will be unique.
+</p>
+<p>
+  Finally, the <code>add(key, string)</code> method will add the given string to
+  the table with the given key. You can put in a fixed value for the key, or you
+  can use the <code>fnv32()</code> function from @s4tk/hashing to generate a
+  hash manually.
+</p>
+
+<h4>Getting Strings</h4>
+<p>
+  You can get a string entry by its key with the
+  <code>getByKey(key)</code> method, or by its value with the
+  <code>getByValue(value)</code> method. Note that the value must be an exact
+  match, case sensitive, in order to return the entry. The entry that is
+  returned is an object with <code>key</code> and <code>value</code> properties.
+</p>
+<p>
+  Additionally, you can use the <code>entries</code> property, which is a list
+  of all of the entries in the string table. You can use this list to get
+  entries by their index, or to loop/iterate over all of the entries. Note that
+  adding/removing entries to/from this list will NOT add/remove them from the
+  string table - you MUST use the add/delete methods.
+</p>
+
 <h4>Editing Strings</h4>
-<p>TODO:</p>
+<p>
+  Once you get a reference to an entry, editing it is as easy as setting the
+  <code>key</code> and <code>value</code> properties.
+</p>
+
 <h4>Deleting Strings</h4>
-<p>TODO:</p>
+<p>
+  To delete an entry with a known key, you can use the
+  <code>deleteByKey(key)</code> method. If you don't know the key, though, you
+  can fetch the entry you want to delete (by its value or index), and then
+  delete it by its unique ID with <code>delete(id)</code>.
+</p>
+<p>
+  If you're confused what the difference between a <code>key</code> and an
+  <code>id</code> is, it's quite simple. Keys are what the game uses, they
+  identify which <em>strings</em> are which. IDs are what S4TK uses, they
+  identify which <em>entries</em> are which. IDs are not a part of the string
+  table, they are just used by S4TK to ensure uniqueness, since keys are NOT
+  guaranteed to be unique (they should be, but it is technically valid for them
+  to overlap).
+</p>
