@@ -1,2 +1,16 @@
 <h2>FNV Hashing</h2>
-<p>TODO</p>
+<p>
+  When adding resources to packages, you're going to need a hash to use for its
+  instance ID. That's what @s4tk/hashing is for.
+</p>
+
+<h4>Functions</h4>
+<p>
+  The two functions you're going to need the most are
+  <code>fnv32(text: string)</code> and <code>fnv64(text: string)</code>. These
+  produce 32-bit and 64-bit FNV hashes, respectively.
+</p>
+<p>
+  If you'd like to force the high bit to 1, you can do so by passing
+  <code>true</code> as the second argument.
+</p>
