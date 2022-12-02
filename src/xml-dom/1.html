@@ -1,0 +1,58 @@
+<h2>Attributes</h2>
+<p>
+  As mentioned on the last page, attributes are key/value pairs. In tuning, they
+  appear on the root node, its children, children of tuples, and variants.
+</p>
+
+<h4>Attribute Aliases</h4>
+<p>
+  On the previous page, you read that you can access attributes with the
+  <code>attributes</code> property. However, for some common attributes
+  (<code>n</code>, <code>s</code>, and <code>t</code>), there are aliases
+  available.
+</p>
+<p>
+  To get the <code>n</code> attribute of a node, you can use <code>name</code>.
+  For <code>s</code>, you can use <code>id</code>. And finally, for
+  <code>t</code>, you can use <code>type</code>.
+</p>
+<p>
+  For any other attributes (like <code>c</code>, <code>m</code>, <code>i</code>,
+  and <code>p</code>), you <strong>must</strong> use the
+  <code>attributes</code> property and get them by name. These attributes do not
+  have aliases for two reasons:
+</p>
+<ol>
+  <li>You're unlikely to need them.</li>
+  <li>There are no good options*.</li>
+</ol>
+<p class="footnote">
+  *<code>class</code>/<code>module</code> are reserved words and cannot be used
+  for <code>c</code>/<code>m</code>; <code>instanceType</code> is too long and
+  <code>type</code> is taken by <code>t</code>, neither is good option for
+  <code>i</code>; who the hell cares about <code>p</code>?
+</p>
+
+<h4>Editing Attributes</h4>
+<p>
+  To add a new attribute or change the value of an existing one, all you have to
+  do is set it, like <code>node.attributes.n = "something"</code>. To delete an
+  existing attribute, you need to use <code>delete node.attributes.n</code>.
+</p>
+<p>
+  Valid values for attributes include strings, numbers, and bigints. Note that
+  parsing an XML document will <strong>always</strong> return them as strings,
+  because parsing them as numbers would cause precision errors with 64-bit
+  tuning IDs. If you need the instance to be a bigint, you must cast it with
+  <code>BigInt()</code>.
+</p>
+<p>
+  It's important to note that you are <strong>not</strong> allowed to set the
+  <code>attributes</code> property itself to a new object. You
+  <strong>must</strong> mutate the existing one*.
+</p>
+<p class="footnote">
+  * This is a remnant from how S4TK used to handle buffer cacheing, and may be
+  changed in the future. But, for now, attempting to set
+  <code>attributes</code> to a new object will throw an error, so don't do it.
+</p>
