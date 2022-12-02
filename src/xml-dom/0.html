@@ -1,2 +1,77 @@
-<h2>XmlElementNode</h2>
-<p>TODO</p>
+<h2>About XML DOMs</h2>
+<p>
+  As a TS4 modder, you're likely familiar with XML structure. However, in order
+  to work with XML in a script, you must also understand XML DOMs.
+</p>
+<p>
+  XML is a data format that means nothing on its own. In order for it to have
+  meaning, it must be loaded into a Document Object Model (DOM). The S4TK module
+  that handles XML DOMs is called @s4tk/xml-dom.
+</p>
+
+<h4>Nodes</h4>
+<p>
+  At the core of XML DOMs are <strong>nodes</strong>. "Node" is a vague term for
+  pretty much anything in an XML DOM, such as a tag (like &lt;T /&gt;), a value
+  (like 0x00000000), or a comment (like &lt;!--...--&gt;).
+</p>
+<p>
+  Some nodes, like tags, are able to contain other nodes. These are called
+  <strong>parents</strong>, and the nodes they contain are their
+  <strong>children</strong>. For example, an &lt;L /&gt; tag that contains
+  several &lt;T /&gt; tags is a parent, and the &lt;T /&gt; tags are its
+  children.
+</p>
+<p>
+  Everything in an XML DOM is a node, including the document itself. The
+  document node is just a wrapper for the nodes that do not have a visible
+  parent. In properly structured XML, there should only be one* node without a
+  parent, such as the &lt;I /&gt; in instance tuning or &lt;M /&gt; in module
+  tuning. This one child is called the <strong>root</strong>.
+</p>
+<p style="font-size: 0.8rem">
+  <em class="text-subtle"
+    >* You may see one more node - the line that begins with "&lt;?xml". This is
+    called a processing instruction, and can be ignored for the sake of this
+    lesson.</em
+  >
+</p>
+
+<h4>XML Documents</h4>
+<p>
+  If the last section was too abstract for you to digest, take a look at the
+  script editor for a real example. In the XML document created for the
+  <code>doc</code> variable, <code>&lt;I&gt;</code> is the root node. It is a
+  parent with one child, <code>&lt;L&gt;</code>. <code>&lt;L&gt;</code> is also
+  a parent to the two <code>&lt;U&gt;</code> nodes, and each
+  <code>&lt;U&gt;</code> is a parent to a <code>&lt;T&gt;</code> and an
+  <code>&lt;E&gt;</code>. Even those <code>&lt;T&gt;</code> and
+  <code>&lt;E&gt;</code> nodes are parents - their children are the value and
+  comment nodes they contain, but we'll get back to that later.
+</p>
+<p>
+  You'll notice that the XML string is being parsed into a DOM with
+  <code>XmlDocumentNode.from(xml: string | Buffer)</code>. This static method
+  returns an instance of the <code>XmlDocumentNode</code> class, which
+  represents an XML document.
+</p>
+<p>
+  As mentioned before, the root of this document is <code>&lt;I&gt;</code>, as
+  it is the node from which everything else descends. To access it, you can use
+  the <code>doc</code>'s <code>child</code> property (the
+  <code>children</code> property is a list of all of a node's children, and
+  <code>child</code> is just an alias for <code>children[0]</code>).
+</p>
+
+<h4>Attributes</h4>
+<p>
+  Attributes are the key/value pairs that appear within opening tags, such as
+  the <code>n="tunable"</code> in <code>&lt;T n="tunable"&gt;</code>.
+</p>
+<p>
+  We'll touch more on attributes on the next page, but for now, just know that
+  you can access a tag's attributes with its <code>attributes</code> property.
+  Once you have that, you can just use the attribute's key to get its value,
+  like <code>attributes.n</code> or <code>attributes["n"]</code> (these do the
+  same thing).
+</p>
