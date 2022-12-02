@@ -1,6 +1,6 @@
 {
   "name": "Tuning",
-  "description": "Learn how to create, read, edit, and write XML resources (tuning).",
+  "description": "Learn how to create, edit, and write XML tuning.",
   "docs": "https://sims4toolkit.com/#/docs/models/latest/resources/XmlResource",
   "apiVersion": "0.1.0",
   "tags": [

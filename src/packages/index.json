@@ -1,6 +1,6 @@
 {
   "name": "Packages",
-  "description": "Learn how to create, read, edit, and write packages.",
+  "description": "Learn how to create, edit, and write packages.",
   "docs": "https://sims4toolkit.com/#/docs/models/latest/packages/Package",
   "apiVersion": "0.1.0",
   "tags": [

@@ -1,6 +1,6 @@
 {
   "name": "Tuning (Advanced)",
-  "description": "Learn advanced techniques with tuning documents, like running batch fixes.",
+  "description": "Learn advanced techniques with XML tuning, like searching and batch fixes.",
   "docs": null,
   "apiVersion": "0.1.0",
   "tags": [
