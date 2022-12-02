@@ -10,11 +10,6 @@ const srcDir = path.resolve(__dirname, "../src");
 
 const outDir = path.resolve(__dirname, "../generated");
 
-const tutorialDirs = fs
-  .readdirSync(srcDir, { withFileTypes: true })
-  .filter((dirent) => dirent.isDirectory())
-  .map((dirent) => dirent.name);
-
 //#endregion Constants
 
 //#region Helpers
@@ -45,7 +40,14 @@ function getSortedFiles(filepath, ext) {
 //#region Generation
 
 const tagsList = readJson(path.join(srcDir, "tags.json"));
+const excludedFilenames = new Set(readJson(path.join(srcDir, "exclude.json")));
 const tagsSet = new Set(tagsList);
+
+const tutorialDirs = fs
+  .readdirSync(srcDir, { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent) => dirent.name)
+  .filter((filename) => !excludedFilenames.has(filename));
 
 const masterIndex = {
   version: 0,

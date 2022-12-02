@@ -1,6 +1,6 @@
 {
   "name": "SimData (Advanced)",
-  "description": "Learn advanced techniques with SimDatas, like editing their binary format.",
+  "description": "Learn how to interact with the SimData binary model.",
   "docs": "https://sims4toolkit.com/#/docs/models/latest/resources/SimDataResource",
   "apiVersion": "0.1.0",
   "tags": [
