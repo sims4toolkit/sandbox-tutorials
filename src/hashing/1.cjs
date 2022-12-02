@@ -9,6 +9,8 @@ const resourceKey = {
   instance: 0x28fc74a94b197e5fn,
 };
 
+// the second argument determines the character to use between
+// the type, group, and instance - by default, it's ":"
 const formattedResourceKey = formatResourceKey(resourceKey, "-");
 Sandbox.output(`Resource Key: ${formattedResourceKey}`);
 
