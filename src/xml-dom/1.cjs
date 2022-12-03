@@ -1,4 +1,8 @@
-const { XmlDocumentNode, XmlElementNode } = require("@s4tk/xml-dom");
+const { XmlDocumentNode } = require("@s4tk/xml-dom");
+
+// There is no need to import XmlElementNode, since we're never using the class
+// itself or its constructor. Creating new XmlElementNodes will be covered on
+// a later page.
 
 // This is the same doc loaded on the last page, but we're using the `child`
 // property to get the root immediately -- remember, `root` is the <I> node,

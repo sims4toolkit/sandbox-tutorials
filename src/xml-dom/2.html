@@ -1,0 +1,25 @@
+<h2>Value & Comment Nodes</h2>
+<p>
+  Value nodes are much simpler than element nodes. They are just a single value,
+  such as a string, number, or boolean. Comments are even easier, as they are
+  just a string.
+</p>
+
+<h4>Parsing Values</h4>
+<p>
+  Like attributes of elements, the XML parser will always load the value of an
+  <code>XmlValueNode</code> as a string, even if it's a number. This is again
+  due to precision errors with 64 bit numbers. If you need the value as a
+  number, you must parse it with
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt"
+    target="_blank"
+    ><code>BigInt()</code></a
+  >.
+</p>
+
+<h4>Getting & Setting Values</h4>
+<p>
+  You can get or set the value of both <code>XmlValueNode</code>s and
+  <code>XmlCommentNode</code>s with their <code>value</code> property.
+</p>
