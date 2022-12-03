@@ -65,3 +65,13 @@ Sandbox.test("tuningID should be a bigint", typeof tuningID === "bigint");
 
 // ==================================================
 // Children
+
+// To access an element's children list, use `children`
+Sandbox.test("root should only have one child", root.children.length === 1);
+
+// You can also use `child` to get the first node in `children`
+Sandbox.test("root's child should be an L tag", root.child.tag === "L");
+Sandbox.test(
+  'root\'s child should ne named "list_of_tuples"',
+  root.child.name === "list_of_tuples"
+);
