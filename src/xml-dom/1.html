@@ -1,15 +1,59 @@
-<h2>Attributes</h2>
+<h2>Element Nodes</h2>
 <p>
-  As mentioned on the last page, attributes are key/value pairs. In tuning, they
-  appear on the root node, its children, children of tuples, and variants.
+  As mentioned on the last page, elements are nodes that have a tag, attributes,
+  and children. Elements in an S4TK XML DOM are represented with the
+  <code>XmlElementNode</code> class.
+</p>
+
+<h4>Tags</h4>
+<p>
+  Every element <strong>must</strong> have a tag. The tag is the value that
+  appears between <code>&lt;</code> and <code>&gt;</code> in the opening and
+  closing parts of the element node. For instance, the tag for
+  <code>&lt;I&gt;</code> is <code>I</code>.
+</p>
+<p>
+  You can get and set the tag of an <code>XmlElementNode</code> with its
+  <code>tag</code> property.
+</p>
+
+<h4>Attributes</h4>
+<p>
+  Elements may have attributes, but they are not required. Attributes are
+  key/value pairs that appear in the opening tag of an element node, such as
+  <code>n="name"</code> in <code>&lt;T n="name"&gt;</code>.
+</p>
+<p>
+  You can access an <code>XmlElementNode</code>'s attributes with its
+  <code>attributes</code> property, which is an object. To get, set, and delete
+  attributes, just edit <code>attributes</code> as you would any other object.
+</p>
+<p>
+  When setting the values of attributes, you can use strings, numbers, or
+  bigints. However, when an <code>XmlDocumentNode</code> is parsed, the value of
+  every attribute will always be a string. That is, even if the
+  <code>s</code> attribute contains the value <code>12345</code>, it will be
+  parsed as the string <code>"12345"</code> rather than the number
+  <code>12345</code>*.
+</p>
+<p class="footnote">
+  * This is because the XML parser works with numbers only, not bigints. Numbers
+  in JavaScript lose precision after around 53 bits, and numbers in tuning can
+  be as high as 64 bits. If you need the tuning ID as a bigint, you must
+  manually parse the string with
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt"
+    target="_blank"
+    ><code>BigInt()</code></a
+  >.
 </p>
 
 <h4>Attribute Aliases</h4>
 <p>
-  On the previous page, you read that you can access attributes with the
-  <code>attributes</code> property. However, for some common attributes
-  (<code>n</code>, <code>s</code>, and <code>t</code>), there are aliases
-  available.
+  Some common attributes (<code>n</code>, <code>s</code>, and <code>t</code>)
+  also have aliases, to make working with them a bit easier (i.e. they have
+  properties on the node itself, rather than having to use
+  <code>attributes</code>).
 </p>
 <p>
   To get the <code>n</code> attribute of a node, you can use <code>name</code>.
@@ -30,29 +74,21 @@
   *<code>class</code>/<code>module</code> are reserved words and cannot be used
   for <code>c</code>/<code>m</code>; <code>instanceType</code> is too long and
   <code>type</code> is taken by <code>t</code>, neither is good option for
-  <code>i</code>; who the hell cares about <code>p</code>?
+  <code>i</code>; who cares about <code>p</code>?
 </p>
 
-<h4>Editing Attributes</h4>
+<h4>Children</h4>
 <p>
-  To add a new attribute or change the value of an existing one, all you have to
-  do is set it, like <code>node.attributes.n = "something"</code>. To delete an
-  existing attribute, you need to use <code>delete node.attributes.n</code>.
-</p>
-<p>
-  Valid values for attributes include strings, numbers, and bigints. Note that
-  parsing an XML document will <strong>always</strong> return them as strings,
-  because parsing them as numbers would cause precision errors with 64-bit
-  tuning IDs. If you need the instance to be a bigint, you must cast it with
-  <code>BigInt()</code>.
+  As mentioned on the previous page, an element node can contain an arbitrary
+  number of other nodes, which are called its children. These children can
+  either be other element nodes (like an <code>&lt;L&gt;</code> that contains
+  <code>&lt;T&gt;</code>s), or they can be value nodes* (like a
+  <code>&lt;T&gt;</code> that contains <code>0x12345678</code>).
 </p>
 <p>
-  It's important to note that you are <strong>not</strong> allowed to set the
-  <code>attributes</code> property itself to a new object. You
-  <strong>must</strong> mutate the existing one*.
+  You can get access an <code>XmlElementNode</code>'s children with its
+  <code>children</code> property. There is also the <code>child</code> property,
+  which is an alias for the first item in the children list
+  (<code>children[0]</code>).
 </p>
-<p class="footnote">
-  * This is a remnant from how S4TK used to handle buffer cacheing, and may be
-  changed in the future. But, for now, attempting to set
-  <code>attributes</code> to a new object will throw an error, so don't do it.
-</p>
+<p class="footnote">* Value nodes are discussed on the next page.</p>
