@@ -21,8 +21,9 @@ const doc = XmlDocumentNode.from(`
 // the <I> tag. You can get the root of a document with the `child` property.
 const root = doc.child;
 
-// You can access attributes with the `attributes` property
-const filename = root.attributes.n;
+// We'll discuss element nodes and their properties next, but for now, just know
+// that you can get an element node's tag with the `tag` property.
+const rootTag = root.tag;
 
-// Let's make sure the filename is what we expect, "some_tuning"
-Sandbox.test('Filename should be "some_tuning"', filename === "some_tuning");
+// Let's make sure the root's tag is "I", to verify that the document loaded
+Sandbox.test('Root tag should be "I"', rootTag === "I");

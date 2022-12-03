@@ -1,41 +1,37 @@
-<h2>About XML DOMs</h2>
+<h2>XML Documents</h2>
 <p>
   XML is a data format that means nothing on its own. In order for it to have
   meaning, it must be loaded into a Document Object Model (DOM). The S4TK module
   that handles XML DOMs is called @s4tk/xml-dom.
 </p>
-<p>
-  As a TS4 modder, you're likely familiar with XML structure. However, in order
-  to work with XML in a script, you must also understand XML DOMs.
-</p>
 
 <h4>Nodes</h4>
 <p>
   At the core of XML DOMs are <strong>nodes</strong>. "Node" is a vague term for
-  pretty much anything in an XML DOM, such as a tag (like &lt;T /&gt;), a value
-  (like 0x00000000), or a comment (like &lt;!--...--&gt;).
+  pretty much anything in an XML DOM, such as an element/tag (like
+  <code>&lt;T /&gt;</code>), a value (like <code>0x00000000</code>), or a
+  comment (like <code>&lt;!--...--&gt;</code>).
 </p>
 <p>
-  Some nodes, like tags, are able to contain other nodes. These are called
+  Some nodes, like elements, are able to contain other nodes. These are called
   <strong>parents</strong>, and the nodes they contain are their
-  <strong>children</strong>. For example, an &lt;L /&gt; tag that contains
-  several &lt;T /&gt; tags is a parent, and the &lt;T /&gt; tags are its
-  children.
+  <strong>children</strong>. For example, an <code>&lt;L /&gt;</code> node that
+  contains several <code>&lt;T /&gt;</code> nodes is a parent, and the
+  <code>&lt;T /&gt;</code> nodes are its children.
 </p>
 <p>
   Everything in an XML DOM is a node, including the document itself. The
-  document node is just a wrapper for the nodes that do not have a visible
-  parent. In properly structured XML, there should only be one* node without a
-  parent, such as the &lt;I /&gt; in instance tuning or &lt;M /&gt; in module
-  tuning. This one child is called the <strong>root</strong>.
+  document node is just a wrapper for the node(s) at the highest level, i.e. the
+  node(s) from which all other nodes descend. In properly structured XML, there
+  should only be one* node without a parent, such as <code>&lt;I /&gt;</code>.
+  This child is called the <strong>root</strong>.
 </p>
 <p class="footnote">
-  * You may see one more node - the line that begins with "&lt;?xml". This is
-  called a processing instruction, and can be ignored for the sake of this
-  lesson.
+  * The line that begins with "&lt;?xml" is called a processing instruction, and
+  can be ignored for the sake of this lesson.
 </p>
 
-<h4>XML Documents</h4>
+<h4>Parsing XML Documents</h4>
 <p>
   If the last section was too abstract for you to digest, take a look at the
   script editor for a real example. In the XML document created for the
@@ -51,8 +47,10 @@
   You'll notice that the XML string is being parsed into a DOM with
   <code>XmlDocumentNode.from(xml: string | Buffer)</code>. This static method
   returns an instance of the <code>XmlDocumentNode</code> class, which
-  represents an XML document.
+  represents an XML document for the given string/buffer.
 </p>
+
+<h4>The Root Node</h4>
 <p>
   As mentioned before, the root of this document is <code>&lt;I&gt;</code>, as
   it is the node from which everything else descends. To access it, you can use
@@ -60,16 +58,8 @@
   <code>children</code> property is a list of all of a node's children, and
   <code>child</code> is just an alias for <code>children[0]</code>).
 </p>
-
-<h4>Attributes</h4>
 <p>
-  Attributes are the key/value pairs that appear within opening tags, such as
-  the <code>n="tunable"</code> in <code>&lt;T n="tunable"&gt;</code>.
-</p>
-<p>
-  We'll touch more on attributes on the next page, but for now, just know that
-  you can access a tag's attributes with its <code>attributes</code> property.
-  Once you have that, you can just use the attribute's key to get its value,
-  like <code>attributes.n</code> or <code>attributes["n"]</code> (these do the
-  same thing).
+  In the vast majority of XML documents, and 100% of TS4 XML documents, the root
+  node is going to be an element. Elements are nodes that have a tag,
+  attributes, and children. You'll read more about these on the next page.
 </p>
