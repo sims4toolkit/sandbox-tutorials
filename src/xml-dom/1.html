@@ -82,7 +82,7 @@
   As mentioned on the previous page, an element node can contain an arbitrary
   number of other nodes, which are called its children. These children can
   either be other element nodes (like an <code>&lt;L&gt;</code> that contains
-  <code>&lt;T&gt;</code>s), or they can be value nodes* (like a
+  <code>&lt;T&gt;</code>s), or they can be value nodes (like a
   <code>&lt;T&gt;</code> that contains <code>0x12345678</code>).
 </p>
 <p>
@@ -91,4 +91,13 @@
   which is an alias for the first item in the children list
   (<code>children[0]</code>).
 </p>
-<p class="footnote">* Value nodes are discussed on the next page.</p>
+
+<h4>Creating New Elements</h4>
+<p>
+  You've learned how to use <code>XmlElementNode</code>s once you have them, but
+  you may be wondering how you can create a new one to add to an existing DOM.
+</p>
+<p>
+  In order to do this, you need to read about value nodes, so let's do that
+  first on the next page.
+</p>

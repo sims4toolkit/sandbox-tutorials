@@ -18,5 +18,50 @@ const root = XmlDocumentNode.from(`
 </I>
 `).child;
 
+// ==================================================
+// Tags
+
 // Just for posterity, let's check the tag value again, make sure it's "I"
-Sandbox.test('Root tag should be "I"', root.tag === "I");
+Sandbox.test('root.tag should be "I"', root.tag === "I");
+
+// Even though you'd probably never do this, it's possible to set the tag
+root.tag = "M";
+
+// If you check the tag now, or write the XML as a string, you'll see that
+// the entire thing is now contained in `<M>...</M>`
+
+// ==================================================
+// Attributes
+
+// To access attributes, use `attributes`
+Sandbox.test(
+  'root.attributes.n should be "some_tuning"',
+  root.attributes.n === "some_tuning"
+);
+
+// Some attributes, like `n`, have aliases
+Sandbox.test('root.name should be "some_tuning"', root.name === "some_tuning");
+
+// To set an attribute's value, just set its key on the `attributes` object
+root.attributes.n = "fancy_new_name";
+Sandbox.output(`File name changed to "${root.name}"`);
+
+// If an attribute has an alias, you can also set that
+root.name = "fancier_newer_name";
+Sandbox.output(`File name changed to "${root.attributes.n}"`);
+
+// Notice how `attributes.n` and `name` are fully in sync with each other.
+// When you update one, the other changes -- that's because they're the exact
+// same thing. This also goes for all other attribute aliases.
+
+// One thing to be mindful of is that all attributes are parsed as strings.
+// Yes, even `s` -- if it were parsed as a number, it would lose precision.
+Sandbox.test("root.id should be a string", typeof root.id === "string");
+
+// If you need the tuning ID as a number, you MUST use a bigint -- numbers lose
+// precision after 53 bits, and tuning IDs can go up to 64 bits
+const tuningID = BigInt(root.id);
+Sandbox.test("tuningID should be a bigint", typeof tuningID === "bigint");
+
+// ==================================================
+// Children
