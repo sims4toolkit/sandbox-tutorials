@@ -1,11 +1,28 @@
 <h2>Methods</h2>
 <p>
-  Other than manually getting and setting parts of the DOM, there are some
-  helper methods that you may find useful.
+  Other than manually getting, setting, and adding parts of the DOM, there are
+  some helper methods that you may find useful.
 </p>
 
-<h4>Helper Methods</h4>
+<h4>Finding Children</h4>
 <p>
-  Some methods that you may find especially helpful are <code>clone()</code>,
-  <code>findChild()</code>, and <code>sort()</code>.
+  So far, you've been getting child nodes by their index. However, this is
+  pretty impractical, since you'll rarely know what the index is, and it is
+  likely to change whenever you update your file anyways.
+</p>
+<p>
+  That's where <code>findChild(name: string)</code> comes in. It will search the
+  children list for the first child that has the given name.
+</p>
+
+<h4>Sorting Children</h4>
+<p>
+  Keeping your tunables in alphabetical order by name is important for
+  readability, but can be tedious when you're programmatically adding children
+  to the end of the list.
+</p>
+<p>
+  And for this, we have <code>sort()</code>. This method can optionally accept a
+  function to use for sorting, but you're unlikely to need it - by default, it
+  will sort children alphabetically by their <code>n</code> attribute.
 </p>
