@@ -5,9 +5,25 @@
   just a string.
 </p>
 
-<h4>Parsing Values</h4>
+<h4>Getting & Setting Values</h4>
 <p>
-  Like attributes of elements, the XML parser will always load the value of an
+  You can get or set the value of both <code>XmlValueNode</code>s and
+  <code>XmlCommentNode</code>s with their <code>value</code> property.
+</p>
+<p>
+  If you have an element node and would like to get the value of the
+  value/comment node within it, you can use <code>innerValue</code> (an alias
+  for <code>child.value</code>).
+</p>
+<p>
+  Setting <code>value</code> to strings, numbers, and bigints should work as you
+  expect, but keep in mind that booleans will write with a capitalized first
+  letter (<code>True</code> and <code>False</code>).
+</p>
+
+<h4>Note on Parsed Values</h4>
+<p>
+  Like the attributes of elements, the XML parser always loads the value of an
   <code>XmlValueNode</code> as a string, even if it's a number. This is again
   due to precision errors with 64 bit numbers. If you need the value as a
   number, you must parse it with
@@ -16,10 +32,4 @@
     target="_blank"
     ><code>BigInt()</code></a
   >.
-</p>
-
-<h4>Getting & Setting Values</h4>
-<p>
-  You can get or set the value of both <code>XmlValueNode</code>s and
-  <code>XmlCommentNode</code>s with their <code>value</code> property.
 </p>
