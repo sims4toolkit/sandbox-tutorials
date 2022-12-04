@@ -1,1 +1,43 @@
 <h2>Creating New Nodes</h2>
+<p>
+  So far, you've seen how to parse an XML document and how to get/set individual
+  values within nodes. This page will show you how to create and add new nodes.
+</p>
+
+<h4>Using Constructors</h4>
+<p>
+  Each node type has its own respective constructor. You can check the
+  documentation linked above for more information about the expected arguments,
+  and the script editor for examples of them being used.
+</p>
+<p>
+  To actually add the new nodes after you create them with their constructors,
+  you can use the node's <code>addChildren()</code> method, which accepts an
+  arbitrary number of nodes to add to the end of the <code>children</code> list.
+</p>
+
+<h4>Using @s4tk/tunables</h4>
+<p>
+  There is an S4TK module that exists for the sole purpose of making this
+  process easier, it is called
+  <a href="https://sims4toolkit.com/#/docs/tunables" target="_blank"
+    >@s4tk/tunables</a
+  >.
+</p>
+<p>
+  This module contains helper functions that make your code more readible and
+  require less arguments. For instance, compare lines 32-41 with lines 69-73 in
+  the script editor.
+</p>
+
+<h4>Using Clones</h4>
+<p>
+  You can clone nodes with the <code>clone()</code> method. This will return a
+  deep copy of the node, meaning that it and all of its children are new
+  instances with the same values as before.
+</p>
+<p>
+  Once you have a clone, you can edit it. This is particularly handy when
+  dealing with lists, since their children tend to have similar, if not the
+  same, structure.
+</p>
