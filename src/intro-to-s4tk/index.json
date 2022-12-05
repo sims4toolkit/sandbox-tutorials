@@ -1,0 +1,9 @@
+{
+  "name": "Introduction to S4TK",
+  "description": "What S4TK looks like at a high level and common patterns to expect.",
+  "apiVersion": "0.1.0",
+  "recommended": true,
+  "tags": [
+    "Beginner"
+  ]
+}
