@@ -1,1 +1,0 @@
-{"key":"simdata-advanced","pages":[{"script":"const { SimDataResource } = require(\"@s4tk/models\");\n\n// TODO:\n","guide":"<h2>SimDataResource</h2>\n<p>TODO</p>\n"}],"media":{}}

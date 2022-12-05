@@ -1,11 +1,10 @@
 {
   "name": "Get to Know the Sandbox",
-  "description": "Learn how to use the sandbox and how it compares to Node.",
+  "description": "How to use the sandbox and how it compares to Node.",
   "docs": null,
   "apiVersion": "0.1.0",
   "recommended": true,
   "tags": [
-    "Sandbox",
     "Beginner"
   ]
 }

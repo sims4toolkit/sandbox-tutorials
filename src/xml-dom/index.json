@@ -1,10 +1,10 @@
 {
   "name": "XML DOMs",
-  "description": "Learn how to read, create, edit, and write XML documents.",
+  "description": "How to parse and interact with XML documents.",
   "docs": "https://sims4toolkit.com/#/docs/xml-dom",
   "apiVersion": "0.1.0",
   "tags": [
-    "Utilities",
-    "Beginner"
+    "Beginner",
+    "Utilities"
   ]
 }
