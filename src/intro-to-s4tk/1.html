@@ -1,0 +1,73 @@
+<h2>Model Bases</h2>
+<p>
+  While not something you'd normally concern yourself with, it may be worth
+  reading about the base classes that various models descend from, since they
+  define common behavior.
+</p>
+<p>
+  Don't feel like you have to remember or even understand the code presented for
+  this tutorial. The sole purpose here is to demonstrate how similar two
+  completely different models can be, thanks to the base classes they inherit
+  from.
+</p>
+
+<h4>Writable Models</h4>
+<p>
+  The
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/abstracts/WritableModel"
+    target="_blank"
+    ><code>WritableModel</code></a
+  >
+  base class defines behavior that is shared between
+  <strong>every</strong> model that can be written to disk.
+</p>
+<p>
+  One of the most important methods to know about is the static
+  <code>from(buffer: Buffer)</code> method that every model implements. It
+  accepts a buffer of data to load into the model, such as a binary STBL or
+  plain text XML.
+</p>
+<p>
+  Another important method to know about is <code>getBuffer()</code>, which
+  returns an uncompressed buffer of the model's data - this is the inverse of
+  the <code>from()</code> method.
+</p>
+<p class="footnote">
+  Check the docs for more information about the optional arguments that
+  <code>from()</code> and <code>getBuffer()</code> accept. For most scripts, you
+  do not need to worry about these options.
+</p>
+
+<h4>Mapped Models</h4>
+<p>
+  The
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/abstracts/MappedModel"
+    target="_blank"
+    ><code>MappedModel</code></a
+  >
+  base class inherits from <code>WritableModel</code>, and is used for models
+  that map keys to values. At the time of writing, the two models that do so are
+  <code>Package</code> and <code>StringTableResource</code>.
+</p>
+<p>
+  The vast majority of methods you'll use to interact with packages and string
+  tables come from this base class, so I highly recommend that you read through
+  the docs.
+</p>
+<p>
+  A key/value pair in a mapped model is called an <strong>entry</strong>. The
+  most important thing to note about entries are their <code>key</code>,
+  <code>value</code>, and <code>id</code> properties.
+</p>
+<p class="footnote">
+  Mapped models are lists of key/value pairs, not actual mappings - therefore,
+  keys are allowed to repeat. S4TK uses an internal <code>id</code> property
+  that acts as a unique, constant identifier, but this ID does not exist in the
+  actual file binaries.
+</p>
+<p class="footnote">
+  You generally do not have to worry about it, just know that it exists and is
+  the preferred way to get and delete entries.
+</p>

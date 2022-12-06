@@ -1,52 +1,33 @@
-<h2>S4TK Models</h2>
+<h2>Welcome to S4TK</h2>
 <p>
-  You're going to learn about several S4TK models, but it may help you to know
-  about some common patterns that appear throughout the entire library.
+  S4TK's tagline is that it can "read and write package files and the resources
+  they contain", but what does that mean?
 </p>
 
-<h4>Writable Models</h4>
+<h4>Terminology</h4>
 <p>
-  While this isn't something you'd normally have to know about, all of the
-  models in S4TK inherit from a common base class called
-  <code>WritableModel</code>. This is just worth mentioning because it helps you
-  understand what the models have in common with each other.
+  Packages are just a data format, somewhat similar to a ZIP archive, and mean
+  nothing on their own. What really matters are the <strong>resources</strong>
+  they contain, such as tuning, string tables, SimData, object definitions, etc.
 </p>
 <p>
-  One of the most important commonality between writiable models is their static
-  <code>from()</code> method. Every class that inherits from
-  <code>WritableModel</code> implements a static
-  <code>from(buffer: Buffer)</code> method that accepts a single buffer as an
-  argument, and may accept optional arguments in an object as a second argument.
+  S4TK is driven by <strong>models</strong>, which are just classes that
+  represent data. S4TK has models for packages and resources, and they are all
+  defined in the @s4tk/models npm package.
 </p>
 <p>
-  You're going to see this <code>from()</code> method used in every model
-  tutorial, so it's good to be aware of.
+  S4TK models can be read from and written to <strong>buffers</strong>, which
+  are fixed-length lists of bytes containing data. This data can either be
+  binary, like packages, or plain text, like XML.
 </p>
-
-<h4>Mapped Models</h4>
-<p>
-  <code>MappedModel</code> is another anbstract base class that you generally
-  don't need to worry about, but again, it's worth mentioning so you have
-  context for the models that inherit from it.
+<p class="footnote">
+  Do not worry - you don't need to understand binary file formats or how buffers
+  work to use S4TK. Using the
+  <a href="https://nodejs.org/api/fs.html" target="_blank">fs</a> Node module,
+  you can read/write buffers from/to files.
 </p>
-<p>
-  A <code>MappedModel</code> inherits from <code>WritableModel</code>, so
-  everything said in the last section also applies here.
-</p>
-<p>
-  At time of writing, there are two mapped models: <code>Package</code> and
-  <code>StringTableResource</code>. What mapped models have in common is that
-  they map keys to values. In the case of packages, they map resource keys
-  (type, group, instance) to resources, and in the case of string tables, they
-  map 32-bit integers to strings.
-</p>
-<p>
-  The vast majority of methods that are used to interact with mapped models
-  appear on the <code>MappedModels</code> base class, so be sure to review that
-  documention when working with packages and string tables.
-</p>
-<p>
-  This also means that once you've mastered working with one of them, you've
-  mastered working with both, since they're essentially the same thing just with
-  different types for their keys and values.
+<p class="footnote">
+  If you'd like to learn more about buffers, check out the documentation for
+  Node's
+  <a href="https://nodejs.org/api/buffer.html" target="_blank">Buffer</a> class.
 </p>
