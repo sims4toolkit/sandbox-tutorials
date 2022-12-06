@@ -1,0 +1,73 @@
+<h2>Keys & Enums</h2>
+<p>
+  You'll be working with resource keys a lot, and S4TK has several enums to help
+  you with them. While you don't need to know everything about these enums just
+  yet, you should be familiar with which ones are used for what.
+</p>
+
+<h4>Types</h4>
+<p>
+  For tuning types like actions and snippets, you can use the
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/enums/TuningResourceType"
+    target="_blank"
+    ><code>TuningResourceType</code></a
+  >
+  enum. For binary file types like string tables and SimData, you can use the
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/enums/BinaryResourceType"
+    target="_blank"
+    ><code>BinaryResourceType</code></a
+  >
+  enum.
+</p>
+<p class="footnote">
+  The reason tuning and binary types are split into two enums is so you can use
+  <code>type in TuningResourceType</code> to determine if a resource is tuning
+  based on its type.
+</p>
+
+<h4>Groups</h4>
+<p>
+  For most resources, the group number does not matter and should be set to 0.
+  However, for SimData, the group serves as a secondary type, and
+  <strong>must</strong> be the 24-bit version of its associated tuning's type.
+  For SimData groups, you can use the
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/enums/SimDataGroup"
+    target="_blank"
+    ><code>SimDataGroup</code></a
+  >
+  enum.
+</p>
+<p class="footnote">
+  Not every tuning type has an associated SimData group, and not every SimData
+  group is the 24-bit version of its 32-bit tuning type. These are general
+  patterns, but there are exceptions.
+</p>
+
+<h4>Instances</h4>
+<p>
+  Instances are the unique part of resource keys, and there is therefore no enum
+  for them. However, the top byte of string table instances
+  <strong>must</strong> match their locale, and there <em>is</em> an enum for
+  that -
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/enums/StringTableLocale"
+    target="_blank"
+    ><code>StringTableLocale</code></a
+  >.
+</p>
+<p>
+  The <code>StringTableLocale</code> enum also has some helper functions that
+  will set the high byte of an instance for you. This is briefly demoed in the
+  script editor, but you'll read more about it in the string table tutorial.
+</p>
+
+<h4>Hashing</h4>
+<p>
+  Another very important aspect of resource keys is FNV hashing. If you want to
+  learn how to generate FNV hashes using S4TK, you should check out the very
+  brief <a href="#/tutorials/hashing">hashing tutorial</a> when you are done
+  with this one.
+</p>
