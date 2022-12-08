@@ -1,0 +1,17 @@
+<h2>Writing to Files</h2>
+<p>
+  Sometimes, you may want to write an <code>XmlResource</code>'s content to an
+  XML file, such as when you're extracting tuning from the game.
+</p>
+
+<h4>Getting the Buffer</h4>
+<p>
+  Like every other resource, you can get an <code>XmlResource</code>'s buffer
+  with <code>getBuffer()</code>. Once you have the buffer, you can write it to a
+  file using whatever your environment allows.
+</p>
+<p class="footnote">
+  In Node, you'd use the
+  <a href="https://nodejs.org/api/fs.html" target="_blank">fs</a> module to
+  write your buffer to a file, rather than <code>Sandbox.download()</code>.
+</p>
