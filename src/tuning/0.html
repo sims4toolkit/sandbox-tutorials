@@ -1,19 +1,48 @@
 <h2>XmlResource</h2>
 <p>
-  When dealing with XML tuning resources, you'll need to use the
+  When dealing with XML resources (like tuning or ASMs), you'll need to use the
   <code>XmlResource</code> class from @s4tk/models.
 </p>
-<p>
-  This tutorial will teach you about the <code>XmlResource</code> model itself,
-  NOT how to use XML DOMs. It is highly recommended that you check out the
-  <a href="#/tutorials/xml-dom">XML DOMs tutorial</a> before this one.
+<p class="footnote">
+  This tutorial assumes that you are familiar with @s4tk/xml-dom. If you are
+  not, you should read the <a href="#/tutorials/xml-dom">XML DOMs tutorial</a>
+  before this one.
 </p>
 
-<h4>Creating Tuning</h4>
-<p>TODO</p>
+<h4>Creating New Tuning</h4>
+<p>
+  To create a new, empty tuning file, you can use
+  <code>new XmlResource()</code> with no arguments.
+</p>
+<p>
+  If you have initial content to use, you can pass either a string or an
+  <code>XmlDocumentNode</code> (from @s4tk/xml-dom) as an argument to the
+  constructor.
+</p>
 
-<h4>Accessing The DOM</h4>
-<p>TODO</p>
+<h4>Loading Tuning From File</h4>
+<p>
+  Like all other resources, the <code>XmlResource</code> class has a static
+  <code>from(buffer: Buffer)</code> method that can be used to load an existing
+  tuning file into an <code>XmlResource</code> object.
+</p>
+<p>
+  This tutorial supplies a sample tuning file called "Sample.xml", and you can
+  load it as a buffer with <code>Sandbox.import()</code>.
+</p>
 
-<h4>Editing The DOM</h4>
-<p>TODO</p>
+<h4>The Content</h4>
+<p>
+  The "content" of an XML resource is a string that contains its XML as plain
+  text. You can get/set* it with the <code>content</code> property.
+</p>
+<p>
+  The content is the source of truth for XML resources. That is, it is used in
+  <code>getBuffer()</code>, so whatever the content is is what gets written to
+  files and packages.
+</p>
+<p class="footnote">
+  * Setting <code>content</code> will regenerate the DOM. There is a somewhat
+  complex relationship between the content and DOM. This will be discussed
+  further on the next page.
+</p>

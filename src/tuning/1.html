@@ -1,18 +1,56 @@
-<h2>Reading and Writing XML</h2>
+<h2>The XML DOM</h2>
 <p>
-  An important aspect of <code>XmlResource</code>s is reading from and writing
-  to XML files.
+  Assuming its content is valid XML, you can access an XML resource's DOM with
+  its <code>dom</code> property.
 </p>
 
-<h4>Reading XML</h4>
+<h4>Accessing The DOM</h4>
 <p>
-  Like any other resource, you can load existing data into an
-  <code>XmlResource</code> model with its static
-  <code>from(buffer: Buffer)</code> method. It accepts a buffer containing plain
-  text XML data, and will load that data into its DOM.
+  The DOM is an <code>XmlDocumentNode</code>, and can be get/set* with the
+  <code>dom</code> property. Since you're almost always going to want the DOM's
+  child, the root, you can also use the <code>root</code> property (an alias for
+  <code>dom.child</code>).
 </p>
 <p>
-  The <code>XmlResource.from()</code> method also accepts some optional
-  arguments, but you usually do not have to worry about these. You can check out
-  the documentation linked above for more information if you wish.
+  It's important to note that editing the DOM does
+  <strong>NOT</strong> automatically update the content. And, since the content
+  is the source of truth, that means that edits made to the DOM will not be
+  reflected the next time you use <code>content</code> or call
+  <code>getBuffer()</code>.
+</p>
+<p class="footnote">
+  * When setting <code>dom</code>/<code>root</code>, note that the
+  <code>content</code> property gets automatically reset to the value of
+  <code>dom.toXml()</code>.
+</p>
+
+<h4>Editing The DOM</h4>
+<p>
+  Since editing the DOM does not automatically update the content, you have two
+  options:
+</p>
+<ul>
+  <li>
+    Set the <code>dom</code> property equal to itself after you make your edits,
+    which will then set <code>content</code> equal to <code>dom.toXml()</code>*
+  </li>
+  <li>
+    Edit the DOM using the <code>updateDom()</code> / <code>updateRoot()</code>
+    methods, which automatically update the content when they finish
+  </li>
+</ul>
+<p>
+  While there's nothing wrong with setting the DOM to itself, it is less
+  readible and more prone to error (e.g. forgetting what it's for and deleting
+  it, or forgetting to do it in the first place).
+</p>
+<p>
+  So, the second approach (using the <code>updateDom()</code> /
+  <code>updateRoot()</code> methods) is preferred, and it's good to get into the
+  habit of using them right away.
+</p>
+<p class="footnote">
+  * You may be thinking that <code>content = dom.toXml()</code> is a third
+  option, but it is strongly discouraged, as doing so would delete the DOM and
+  require it to be regenerated.
 </p>
