@@ -1,56 +1,57 @@
-<h2>The XML DOM</h2>
+<h2>The DOM</h2>
 <p>
-  Assuming its content is valid XML, you can access an XML resource's DOM with
-  its <code>dom</code> property.
+  The content is plain text - it knows nothing about XML structure. If you want
+  to edit a tuning document, you have to use its DOM.
 </p>
 
-<h4>Accessing The DOM</h4>
+<h4>Accessing the DOM</h4>
 <p>
-  The DOM is an <code>XmlDocumentNode</code>, and can be get/set* with the
-  <code>dom</code> property. Since you're almost always going to want the DOM's
-  child, the root, you can also use the <code>root</code> property (an alias for
-  <code>dom.child</code>).
+  The DOM is an <code>XmlDocumentNode</code> (from @s4tk/xml-dom), and can be
+  accessed with the <code>dom</code> property.
 </p>
 <p>
-  It's important to note that editing the DOM does
-  <strong>NOT</strong> automatically update the content. And, since the content
-  is the source of truth, that means that edits made to the DOM will not be
-  reflected the next time you use <code>content</code> or call
-  <code>getBuffer()</code>.
+  Since you're almost always going to want the DOM's child (i.e. the root), you
+  can also use the <code>root</code> property, which is an alias for
+  <code>dom.child</code>.
 </p>
-<p class="footnote">
-  * When setting <code>dom</code>/<code>root</code>, note that the
-  <code>content</code> property gets automatically reset to the value of
-  <code>dom.toXml()</code>.
+<p>
+  Once you have the DOM/root, you can get and set the values of nodes as you
+  learned to do in the <a href="#/tutorials/xml-dom">XML DOMs tutorial</a>.
 </p>
 
-<h4>Editing The DOM</h4>
+<h4>Content vs. DOM</h4>
 <p>
-  Since editing the DOM does not automatically update the content, you have two
-  options:
+  As mentioned previously, setting the <code>content</code> property will cause
+  the DOM to regenerate. The inverse is also true - setting the
+  <code>dom</code> property will automatically set the value of
+  <code>content</code> to the result of <code>dom.toXml()</code>.
 </p>
+<p>
+  <strong class="danger">IMPORTANT:</strong> Editing nodes within the DOM will
+  <em>not</em> automatically sync the content! Since the content is what is used
+  in <code>getBuffer()</code>, your changes to the DOM will <em>not</em> be
+  reflected when you write the tuning to a file.
+</p>
+<p>So... how do you save your changes to the DOM?</p>
+
+<h4>Editing the DOM</h4>
+<p>Since editing the DOM does not update the content, you have two options:</p>
 <ul>
   <li>
     Set the <code>dom</code> property equal to itself after you make your edits,
     which will then set <code>content</code> equal to <code>dom.toXml()</code>*
   </li>
   <li>
-    Edit the DOM using the <code>updateDom()</code> / <code>updateRoot()</code>
-    methods, which automatically update the content when they finish
+    Edit the DOM using <code>updateDom()</code> or <code>updateRoot()</code>,
+    which update the content when they finish
   </li>
 </ul>
 <p>
-  While there's nothing wrong with setting the DOM to itself, it is less
-  readible and more prone to error (e.g. forgetting what it's for and deleting
-  it, or forgetting to do it in the first place).
-</p>
-<p>
-  So, the second approach (using the <code>updateDom()</code> /
-  <code>updateRoot()</code> methods) is preferred, and it's good to get into the
-  habit of using them right away.
+  Setting the DOM equal to itself is less readible and more prone to error, so
+  using <code>updateDom()</code> / <code>updateRoot()</code> is preferred.
 </p>
 <p class="footnote">
-  * You may be thinking that <code>content = dom.toXml()</code> is a third
-  option, but it is strongly discouraged, as doing so would delete the DOM and
-  require it to be regenerated.
+  * If you're thinking of using <code>content = dom.toXml()</code> yourself,
+  Just Don't&#8482;. It is strongly discouraged as it would unnecessarily reset
+  the DOM.
 </p>

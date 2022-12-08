@@ -1,96 +1,60 @@
-// TODO:
 const { XmlResource } = require("@s4tk/models");
-const { XmlDocumentNode } = require("@s4tk/xml-dom");
+const { E } = require("@s4tk/tunables");
 
-// Obviously real tuning would be longer, but this is just for example
-const sampleTuning = `<I n="something"/>`;
-const sampleDom = XmlDocumentNode.from(sampleTuning);
-
-// ==================================================
-// Creating Tuning
-
-// No arguments for empty file
-const emptyTuning = new XmlResource();
-
-// One string argument for file with initial content
-const tuningFromString = new XmlResource(sampleTuning);
-
-// One DOM argument for file with initial content
-const tuningFromDom = new XmlResource(sampleDom);
+const trait = new XmlResource(`
+<I c="Trait" i="trait" m="traits.traits" n="some_trait" s="12345">
+  <L n="ages">
+    <E>YOUNGADULT</E>
+    <E>ADULT</E>
+  </L>
+  <E n="trait_type">HIDDEN</E>
+</I>
+`);
 
 // ==================================================
-// The Content
+// Accessing the DOM
 
-// Get the string content with `content`
-Sandbox.output(`emptyTuning.content: ${emptyTuning.content}\n`);
-Sandbox.output(`tuningFromString.content:\n${tuningFromString.content}\n`);
-Sandbox.output(`tuningFromDom.content:\n${tuningFromDom.content}\n`);
-
-// Set the content with the same property
-emptyTuning.content = `<I n="no_longer_empty"/>`;
-Sandbox.output(`emptyTuning.content after setting:\n${emptyTuning.content}\n`);
-
-// Note that setting the content will regenerate the DOM
-Sandbox.test(
-  "tuningFromDom.dom === sampleDom",
-  tuningFromDom.dom === sampleDom
-);
-
-Sandbox.output("Setting tuningFromDom.content...");
-tuningFromDom.content = `<I n="something_else"/>`;
-
-Sandbox.test(
-  "tuningFromDom.dom !== sampleDom",
-  tuningFromDom.dom !== sampleDom
-);
+// You can use the DOM like you learned in the XML DOMs tutorial
+Sandbox.output(`Filename: ${trait.root.name}`);
+Sandbox.output(`Tuning ID: ${trait.root.id}\n`);
 
 // ==================================================
-// The DOM
+// Content vs. DOM
 
-// Note that `root` is an alias for `dom.child`, so we'll be using that instead
-Sandbox.test(
-  "dom.child === root",
-  tuningFromString.dom.child === tuningFromString.root
-);
+// IMPORTANT: Editing nodes within the DOM will *NOT* sync the content!
+// For instance, let's edit something in the DOM and then view the `content`
+trait.root.name = "new_trait";
+Sandbox.output(`After changing name to 'new_trait':${trait.content}`);
 
-// Since the dom/root are XmlNodes, you can use them like you learned in the
-// XML DOMs tutorial, such as getting the `n` attribute with `name`
-Sandbox.output(`tuningFromString.root.name: ${tuningFromString.root.name}\n`);
-
-// IMPORTANT: Editing the dom/root does NOT automatically update the content,
-// for instance, check the output for the following:
-Sandbox.output("About to edit tuningFromString's DOM...");
-tuningFromString.root.name = "newer_name";
-Sandbox.output(`tuningFromString.content: ${tuningFromString.content}`);
+// As seen in the output, the content still thinks the name is 'some_trait'...
 
 // ==================================================
 // Editing the DOM
 
-// As you can see, the content still thinks the name is "something". However,
-// just like setting the `content` property refreshes the DOM, setting the `dom`
-// property refreshes the content.
-tuningFromString.dom = tuningFromDom.dom;
-Sandbox.output(
-  `tuningFromString.content after setting dom: ${tuningFromString.content}`
-);
+// To sync the content with the previous edit, we can set `dom` equal to itself,
+// since this will notify the XML resource that its DOM has changed and that it
+// needs to update the content to match
+trait.dom = trait.dom;
+Sandbox.output(`After setting 'dom = dom':\n${trait.content}\n`);
 
-// That works, but it's a little weird, unreadible, and easy to forget. A better
-// way to ensure the content stays in sync is by using `updateDom()` and
-// `updateRoot()`. They both accept a function as an argument, and that function
-// should expect either the dom or the root as its argument. It will call the
-// function, and once it terminates, it'll update the content accordingly.
-tuningFromString.updateDom((dom) => {
-  dom.child.name = "even_newer_name";
+// That works, but it's a little weird and easy to forget...
+
+// A better way to ensure the content stays in sync is by using updateRoot().
+// There is also an updateDom() method, but updateRoot() is more convenient.
+// It accepts a function as an argument, and that function accepts the root as
+// an argument. If you're new to JavaScript, this might sound confusing, but
+// just take a look at an example:
+
+trait.updateRoot((root) => {
+  // updating the name, just like before
+  root.name = "even_newer_trait";
+
+  // and also adding in a whole new node, cause why not?
+  root.findChild("ages").addChildren(E({ value: "ELDER" }));
 });
 
-Sandbox.output(
-  `tuningFromString.content after updateDom(): ${tuningFromString.content}`
-);
+// () => { } is just how you create an anonymous function in JavaScript - this
+// function gets passed into the updateRoot() method, which will then call the
+// anonymous function that you provided
 
-tuningFromString.updateRoot((root) => {
-  root.name = "newest_name";
-});
-
-Sandbox.output(
-  `tuningFromString.content after updateRoot(): ${tuningFromString.content}`
-);
+Sandbox.output(`After updateRoot():\n${trait.content}`);
