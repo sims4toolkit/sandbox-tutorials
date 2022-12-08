@@ -44,3 +44,18 @@ Sandbox.output("\nBefore sorting:", root.toXml());
 root.sort();
 
 Sandbox.output("\nAfter sorting:", root.toXml());
+
+// ==================================================
+// Deleting Children
+
+// Since that "fourth" node makes the order weird... let's get rid of it.
+// Unfortunately, there is no built-in way to delete a node right now.
+
+// 1) Use indexOf() to find the index of the node you want to delete
+const fourthIndex = root.children.indexOf(root.findChild("fourth"));
+
+// 2) Use the index with splice() to delete the item
+//    This deletes 1 element at the index fourthIndex
+root.children.splice(fourthIndex, 1);
+
+Sandbox.output("\nAfter deleting:", root.toXml());

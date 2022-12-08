@@ -34,3 +34,31 @@
   string, so that you can log it, write it to a file, or save it in a package.
   Admittedly, a better name would be toString(), but hindsight is 20/20.
 </p>
+
+<h4>Deleting Nodes</h4>
+<p>
+  Well... This is awkward. There actually isn't a built-in way to delete nodes
+  from a DOM at the time of writing. For now, you'll have to do this with pure
+  JavaScript.
+</p>
+<p>
+  You can review
+  <a
+    href="https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array"
+    target="_blank"
+    >this StackOverflow post</a
+  >
+  to see how you can remove an object from a list. In summary, you have to use
+  <code>indexOf()</code> and <code>splice()</code> - view the code editor for an
+  example.
+</p>
+<p class="footnote">
+  In all honesty, I didn't realize this was missing until I wrote this tutorial.
+  Keep an eye on
+  <a
+    href="https://github.com/sims4toolkit/xml-dom/blob/main/CHANGELOG.md"
+    target="_blank"
+    >the changelog</a
+  >
+  for @s4tk/xml-dom, because I plan on adding a better way to do this.
+</p>

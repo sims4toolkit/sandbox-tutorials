@@ -3,6 +3,7 @@
 // <I c="Class" i="type" m="path" n="some_tuning" s="12345">
 //   <T n="tunable">0<!--TODO--></T>
 //   <L n="list" />
+//   <T n="delete_me" />
 // </I>
 //
 // And to turn it into the following:

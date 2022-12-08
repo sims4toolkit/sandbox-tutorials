@@ -8,6 +8,7 @@ const root = XmlDocumentNode.from(`
 <I c="Class" i="type" m="path" n="some_tuning" s="12345">
   <T n="tunable">0<!--TODO--></T>
   <L n="list" />
+  <T n="delete_me" />
 </I>
 `).child;
 
@@ -18,6 +19,9 @@ tunable.children[1].value = "some_other_tuning";
 
 const list = root.findChild("list");
 list.addChildren(E({ value: "FIRST" }), E({ value: "SECOND" }));
+
+const deleteMeIndex = root.children.indexOf(root.findChild("delete_me"));
+root.children.splice(deleteMeIndex, 1);
 
 root.sort();
 
