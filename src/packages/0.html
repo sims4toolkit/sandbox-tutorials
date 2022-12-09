@@ -4,17 +4,26 @@
   from @s4tk/models.
 </p>
 <p class="footnote">
-  This tutorial assumes that you are somewhat familiar with
+  This tutorial assumes that you are familiar with
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/types/ResourceKey"
+    target="_blank"
+    >ResourceKeys</a
+  >,
   <a
     href="https://sims4toolkit.com/#/docs/models/latest/abstracts/MappedModel"
     target="_blank"
     >MappedModels</a
+  >, and
+  <a href="https://sims4toolkit.com/#/docs/hashing" target="_blank"
+    >@s4tk/hashing</a
   >. If you are not, you should read the
-  <a href="#/tutorials/intro-to-s4tk">Intro to S4TK tutorial</a>
-  before this one.
+  <a href="#/tutorials/intro-to-s4tk" target="_blank">Intro to S4TK</a> and
+  <a href="#/tutorials/hashing" target="_blank">Hashing</a> tutorials before
+  this one.
 </p>
 
-<h4>Creating Package</h4>
+<h4>Creating a Package</h4>
 <p>To create a new, empty package, you can use <code>new Package()</code>.</p>
 <p>
   If you want to create a package with existing entries, you can pass a list of
@@ -27,13 +36,70 @@
 </p>
 
 <h4>Adding Entries</h4>
-<p>TODO</p>
+<p>
+  To add an entry, you need a resource and a resource key. A resource key is an
+  object with <code>type</code>, <code>group</code>, and <code>instance</code>
+  properties.
+</p>
+<p>
+  Once you have a resource and its key, you can add them to the package with the
+  <code>add(key: ResourceKey, value: Resource)</code> method.
+</p>
 
 <h4>Getting Entries</h4>
-<p>TODO</p>
+<p>
+  Since a package is a mapped model, each key/value pair is called an
+  <strong>entry</strong>. Specifically, the entries in a package are of the type
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/types/ResourceEntry"
+    target="_blank"
+    ><code>ResourceEntry</code></a
+  >, which has <code>id</code>, <code>key</code>, and
+  <code>value</code> properties.
+</p>
+<p>You can get a resource entry by its...</p>
+<ul>
+  <li>ID: <code>get(id: number)</code></li>
+  <li>Key: <code>getByKey(key: ResourceKey)</code></li>
+  <li>Value: <code>getByValue(value: Resource)</code></li>
+</ul>
+<p>
+  Additionally, you can use the <code>entries</code> property, which is a list
+  of all of the entries in the package. You can use this list to get entries by
+  their index, or to loop/iterate over all of the entries.
+</p>
+<p class="footnote">
+  Note that adding/removing entries to/from the <code>entries</code> list will
+  NOT add/remove them from the package - you MUST use the add/delete methods.
+</p>
 
 <h4>Editing Entries</h4>
-<p>TODO</p>
+<p>
+  Once you have a <code>ResourceEntry</code> object, editing it is as easy as
+  editing the <code>key</code> and <code>value</code> properties.
+</p>
+<p>
+  You can either set these to entirely new keys and resources, or you can mutate
+  the existing key/resource.
+</p>
+<p class="footnote">
+  Note that resource entries also have a property called
+  <code>resource</code>, which is just an alias for <code>value</code>.
+</p>
 
 <h4>Deleting Entries</h4>
-<p>TODO</p>
+<p>You can delete a resource entry by its...</p>
+<ul>
+  <li>ID: <code>delete(id: number)</code></li>
+  <li>Key: <code>deleteByKey(key: ResourceKey)</code></li>
+</ul>
+<p class="footnote">
+  If you're confused about IDs vs. keys, it is explained in the
+  <a href="#/tutorials/intro-to-s4tk" target="_blank">Intro to S4TK tutorial</a
+  >.
+</p>
+<p class="footnote">
+  For posterity, the key is what actually gets written to the package, and the
+  ID is a unique identifier that S4TK uses internally (just in case any keys are
+  repeated).
+</p>
