@@ -1,14 +1,14 @@
 <h2>String Table Binaries</h2>
 <p>
-  In order for the <code>StringTableResource</code> model to be useful at all,
-  you need to be able to load one from a STBL binary, as well as write it as
-  one. Fortunately, this is extremely easy.
+  If you want to load an existing STBL into a <code>StringTableResource</code>,
+  or want to write one to a file, you need to work with binary STBL buffers.
 </p>
 
 <h4>Reading a STBL Binary</h4>
 <p>
-  Before you can create a <code>StringTableResource</code> object, you have to
-  get your hands on a buffer that contains binary STBL data.
+  First, you have to get your hands on a buffer that contains binary STBL data.
+  Then, you can use <code>StringTableResource.from(buffer)</code> to load it
+  into a string table model.
 </p>
 <p>
   In the sandbox, you can use <code>await Sandbox.import(filename)</code> to
@@ -19,9 +19,7 @@
 <h4>Writing a STBL Binary</h4>
 <p>
   To save a <code>StringTableResource</code> object as a file, you have to get
-  its buffer with the <code>getBuffer()</code> method. If you view the S4TK
-  documentation, you'll see that this method has some optional arguments, but
-  for the most part, you don't have to worry about them.
+  its buffer with the <code>getBuffer()</code> method.
 </p>
 <p>
   In the sandbox, you can use <code>Sandbox.download(filename, buffer)</code> to

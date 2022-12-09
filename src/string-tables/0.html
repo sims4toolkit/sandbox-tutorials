@@ -3,6 +3,16 @@
   When dealing with string tables, you'll need to use the
   <code>StringTableResource</code> class from @s4tk/models.
 </p>
+<p class="footnote">
+  This tutorial assumes that you are somewhat familiar with
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/abstracts/MappedModel"
+    target="_blank"
+    >mapped models</a
+  >. If you are not, you should read the
+  <a href="#/tutorials/intro-to-s4tk">Intro to S4TK tutorial</a>
+  before this one.
+</p>
 
 <h4>Creating STBL</h4>
 <p>
@@ -12,60 +22,73 @@
 
 <h4>Adding Strings</h4>
 <p>
-  The <code>addAndHash(string)</code> method will add the given string to the
-  table, and use its 32-bit hash as its key. While convenient, it may not be the
-  best idea to use this function in production - you want to make sure that your
-  string keys are unique.
+  The <code>addAndHash(value: string)</code> method adds a string to the table,
+  using its FNV32 hash as the key. However, hashing the value itself is not very
+  safe in terms of making a unique hash.
 </p>
 <p>
-  The <code>addAndHash(string, toHash)</code> method will add the given string
-  to the table, and use the 32-bit hash of the <code>toHash</code> argument as
-  its key. This is a bit "safer" than hashing the string itself, because you can
-  append your creator name to the front, increasing the liklihood that your key
-  will be unique.
+  Instead, you should use
+  <code>addAndHash(value: string, toHash: string)</code>, which hashes the
+  <code>toHash</code> argument for the key instead. This is safer than hashing
+  the value itself, because you can append your creator name to the front.
 </p>
 <p>
-  Finally, the <code>add(key, string)</code> method will add the given string to
-  the table with the given key. You can put in a fixed value for the key, or you
-  can use the <code>fnv32()</code> function from @s4tk/hashing to generate a
-  hash manually.
+  Finally, if you know the exact key you want, you can use
+  <code>add(key: number, value: string)</code>, which adds the key/string pair
+  to the table.
 </p>
 
 <h4>Getting Strings</h4>
 <p>
-  You can get a string entry by its key with the
-  <code>getByKey(key)</code> method, or by its value with the
-  <code>getByValue(value)</code> method. Note that the value must be an exact
-  match, case sensitive, in order to return the entry. The entry that is
-  returned is an object with <code>key</code> and <code>value</code> properties.
+  Since a string table is a mapped model, each key/value pair is called an
+  <strong>entry</strong>. Specifically, the entries in a string table are of the
+  type
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/types/StringEntry"
+    target="_blank"
+    ><code>StringEntry</code></a
+  >, which has <code>id</code>, <code>key</code>, and
+  <code>value</code> properties.
 </p>
+<p>You can get a string entry by its...</p>
+<ul>
+  <li>ID: <code>get(id: number)</code></li>
+  <li>Key: <code>getByKey(key: number)</code></li>
+  <li>Value: <code>getByValue(value: string)</code></li>
+</ul>
 <p>
   Additionally, you can use the <code>entries</code> property, which is a list
   of all of the entries in the string table. You can use this list to get
-  entries by their index, or to loop/iterate over all of the entries. Note that
-  adding/removing entries to/from this list will NOT add/remove them from the
-  string table - you MUST use the add/delete methods.
+  entries by their index, or to loop/iterate over all of the entries.
+</p>
+<p class="footnote">
+  Note that adding/removing entries to/from the <code>entries</code> list will
+  NOT add/remove them from the string table - you MUST use the add/delete
+  methods.
 </p>
 
 <h4>Editing Strings</h4>
 <p>
-  Once you get a reference to an entry, editing it is as easy as setting the
-  <code>key</code> and <code>value</code> properties.
+  Once you have a <code>StringEntry</code> object, editing it is as easy as
+  setting the <code>key</code> and <code>value</code> properties.
+</p>
+<p class="footnote">
+  Note that string entries also have a property called
+  <code>string</code>, which is just an alias for <code>value</code>.
 </p>
 
 <h4>Deleting Strings</h4>
-<p>
-  To delete an entry with a known key, you can use the
-  <code>deleteByKey(key)</code> method. If you don't know the key, though, you
-  can fetch the entry you want to delete (by its value or index), and then
-  delete it by its unique ID with <code>delete(id)</code>.
+<p>You can delete a string entry by its...</p>
+<ul>
+  <li>ID: <code>delete(id: number)</code></li>
+  <li>Key: <code>deleteByKey(key: number)</code></li>
+</ul>
+<p class="footnote">
+  If you're confused about IDs vs. keys, it is explained in the
+  <a href="#/tutorials/intro-to-s4tk">Intro to S4TK tutorial</a>.
 </p>
-<p>
-  If you're confused what the difference between a <code>key</code> and an
-  <code>id</code> is, it's quite simple. Keys are what the game uses, they
-  identify which <em>strings</em> are which. IDs are what S4TK uses, they
-  identify which <em>entries</em> are which. IDs are not a part of the string
-  table, they are just used by S4TK to ensure uniqueness, since keys are NOT
-  guaranteed to be unique (they should be, but it is technically valid for them
-  to overlap).
+<p class="footnote">
+  For posterity, the key is what actually gets written to the string table, and
+  the ID is a unique identifier that S4TK uses internally (just in case any keys
+  are repeated).
 </p>

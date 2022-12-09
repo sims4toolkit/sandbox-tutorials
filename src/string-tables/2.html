@@ -6,24 +6,29 @@
 
 <h4>Reading a STBL JSON</h4>
 <p>
-  The <code>new StringTableResource()</code> constructor is able to accept a
-  list of objects containing key/value pairs - this is a JSON. This JSON can
-  either be defined as an array literal, or it can be loaded from a JSON file.
+  The <code>StringTableResource</code> constructor is able to accept a list of
+  objects containing key/value pairs - this is a JSON. This JSON can either be
+  defined as an array literal, or it can be loaded from a JSON file.
 </p>
 <p>
   Regardless of how you get your hands on the JSON, all you have to do is pass
   it into the constructor, and you'll have a string table with default entries.
+</p>
+<p class="footnote">
   You can add, get, edit, and delete entries from these string tables just as
   you did with the string table you created from scratch on the previous page.
 </p>
 
 <h4>Writing a STBL JSON</h4>
 <p>
-  Once you have a string table object, regardless of how it was made, you can
-  turn it into a JSON with the <code>toJsonObject()</code> method. Check the
-  docs for optional arguments that this method accepts.
+  Once you have a <code>StringTableResource</code>, regardless of how it was
+  made, you can turn it into a JSON with the <code>toJsonObject()</code> method.
 </p>
 <p>
   From there, you can do whatever you want with the JSON. Iterate over it, save
   it to a file, load it into another STBL - anything.
+</p>
+<p class="footnote">
+  The <code>toJsonObject()</code> method accepts some optional arguments. If you
+  want to learn about them, check out the documentation.
 </p>
