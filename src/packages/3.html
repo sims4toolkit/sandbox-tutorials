@@ -1,0 +1,47 @@
+<h2>Challenge</h2>
+<p>
+  Now that you've read about the <code>Package</code> class, let's put your
+  skills to the test.
+</p>
+
+<h4>Importing from S4TK</h4>
+<p>
+  In order to use <code>Package</code>, you need to import it. So... do that. Do
+  it now. Hurry. Chop chop.
+</p>
+
+<h4>Create a Package</h4>
+<p>
+  You'll need a package to add resources to, so make an empty one and assign it
+  to a variable called <code>pkg</code>.
+</p>
+
+<h4>Create a Resource Key</h4>
+<p>
+  Let's create a resource key for an English string table. The instance should
+  be the FNV 64 hash of "MyStringTable".
+</p>
+<p class="footnote">
+  Hint: You'll have to import the hashing function and two enums. Don't forget
+  to set the locale code in the instance.
+</p>
+
+<h4>Import a STBL</h4>
+<p>
+  This isn't a challenge for STBLs, so don't bother making one from scratch. You
+  can use
+  <code>StringTableResource.from(await Sandbox.import("English.stbl"))</code> to
+  load a stbl into a variable called <code>stbl</code>.
+</p>
+
+<h4>Add STBL to the PKG</h4>
+<p>
+  Add <code>stbl</code> to your package using <code>resourceKey</code> as its
+  key.
+</p>
+
+<h4>Get the Buffer</h4>
+<p>
+  Save the package's buffer to a variable called <code>pkgBuffer</code>. This
+  step is important, because it's what your code will be tested against.
+</p>
