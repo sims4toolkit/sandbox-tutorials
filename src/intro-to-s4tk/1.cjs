@@ -1,4 +1,6 @@
 const { Package, StringTableResource } = require("@s4tk/models");
+const { StringTableLocale } = require("@s4tk/models/enums");
+const { fnv64 } = require("@s4tk/hashing");
 
 /*
   NOTE: Don't feel like you have to memorize all of this - the point of this
@@ -21,11 +23,14 @@ const stbl = StringTableResource.from(stblBuffer);
 
 // to get the buffer for a model, you can use its `getBuffer()` method
 
+// this is just a function that gets the first 4 bytes of a buffer
+const getFourBytes = (buffer) => buffer.toString("utf-8", 0, 4);
+
 // the first 4 bytes of a binary package should be "DBPF"
-Sandbox.output("Pkg: " + pkg.getBuffer().toString("utf-8", 0, 4));
+Sandbox.output("Pkg: " + getFourBytes(pkg.getBuffer()));
 
 // the first 4 bytes of a binary string table should be "STBL"
-Sandbox.output("Stbl: " + stbl.getBuffer().toString("utf-8", 0, 4));
+Sandbox.output("Stbl: " + getFourBytes(stbl.getBuffer()));
 
 // ==================================================
 // Mapped Model Methods
@@ -36,8 +41,11 @@ Sandbox.output("Stbl: " + stbl.getBuffer().toString("utf-8", 0, 4));
 Sandbox.output(`Pkg size: ${pkg.size}`);
 Sandbox.output(`Stbl size: ${stbl.size}`);
 
+// don't worry about these 2 lines
+const stblInstance = StringTableLocale.setHighByte(0, fnv64("Hash Me!"));
+const resourceKey = { type: 0x220557da, group: 0, instance: stblInstance };
+
 // you can add key/value pairs with `add()`, which returns the created entry
-const resourceKey = { type: 0x220557da, group: 0, instance: 0x1234567890abcd };
 const stblEntry = pkg.add(resourceKey, stbl);
 const stringEntry = stbl.add(0x12345678, "New string!");
 
@@ -54,6 +62,8 @@ Sandbox.test("String entry", stringEntry.value === "New string!");
 pkg.delete(stblEntry.id);
 stbl.delete(stringEntry.id);
 
-// MappedModels have a LOT of methods for getting and setting data - you'll
-// learn more about these methods in the Package and StringTableResource
-// tutorials, or by reading through the MappedModel documentation
+// MappedModels have a LOT of methods for getting and setting data - you can
+// learn more by reading through the MappedModel documentation.
+
+// The Package and StringTableResource tutorials will assume that you're
+// at least somewhat familiar with MappedModel and their entries.
