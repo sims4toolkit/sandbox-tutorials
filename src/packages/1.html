@@ -10,10 +10,24 @@
 </p>
 
 <h4>Reading a DBPF Buffer</h4>
-<p>TODO</p>
+<p>
+  First, you have to get a buffer that contains binary package data, and then
+  load that buffer into a <code>Package</code> with <code>from(buffer)</code>.
+</p>
+<p>
+  This tutorial provides a package named "Sample.package" - you can import it
+  with <code>await Sandbox.import()</code>.
+</p>
 
 <h4>Writing a DBPF Buffer</h4>
-<p>TODO</p>
+<p>
+  To save a <code>Package</code> object as a file, you have to get its buffer
+  with the <code>getBuffer()</code> method.
+</p>
+<p>
+  In the sandbox, you can use <code>Sandbox.download(filename, buffer)</code> to
+  save the package to your computer.
+</p>
 
 <h4>Note about Node</h4>
 <p>
