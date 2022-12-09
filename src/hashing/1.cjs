@@ -5,7 +5,7 @@ const {
 
 const resourceKey = {
   type: 0x220557da,
-  group: 0x8000000,
+  group: 0x80000000,
   instance: 0x28fc74a94b197e5fn,
 };
 
