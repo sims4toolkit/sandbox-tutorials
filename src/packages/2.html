@@ -1,0 +1,73 @@
+<h2>Extracting from Packages</h2>
+<p>
+  If all you need are the resources, rather than the package itself, then you
+  can extract them and forego the <code>Package</code> object.
+</p>
+
+<h4>Extracting Resources</h4>
+<p>
+  The static <code>extractResources(buffer)</code> method accepts a DBPF buffer
+  as an argument, parses it, and returns a list of
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/types/ResourceKeyPair"
+    target="_blank"
+    ><code>ResourceKeyPair</code></a
+  >
+  objects, which have <code>key</code> and <code>value</code> properties.
+</p>
+<p>
+  These key/value pairs are just like entries, except they do not belong to any
+  mapped model.
+</p>
+
+<h4>Optional Arguments</h4>
+<p>
+  The <code>extractResources(buffer, options?)</code> method accepts a second
+  argument, which is an object of
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/types/PackageFileReadingOptions"
+    target="_blank"
+    ><code>PackageFileReadingOptions</code></a
+  >.
+</p>
+<p>
+  One of the most useful options is
+  <a
+    href="https://sims4toolkit.com/#/docs/models/latest/types/ResourceFilter"
+    target="_blank"
+    ><code>resourceFilter</code></a
+  >, which lets you include or exclude resources based on their resource key.
+  For instance, you can choose to extract string tables only, and ignore all
+  other file types.
+</p>
+<p class="footnote">
+  You can read through the other options if you'd like, but don't worry about it
+  if you don't want to. Chances are, you're never going to need the other
+  options.
+</p>
+
+<h4>Final Notes</h4>
+<p>
+  Obviously, the main purpose of extraction is to extract tuning from the game.
+  For that, you can use
+  <a href="https://sims4toolkit.com/#/docs/extraction" target="_blank"
+    >@s4tk/extraction</a
+  >.
+</p>
+<p>
+  It is impossible to demo game file extraction in the browser for two reasons:
+</p>
+<ul>
+  <li>The browser does not have access to your local file system</li>
+  <li>
+    @s4tk/extraction is not just JavaScript, it uses some C bindings to optimize
+    the extraction process
+  </li>
+</ul>
+<p>
+  If you want to use S4TK for extracting files from your game, check out the
+  <a href="https://github.com/sims4toolkit/extraction-template" target="_blank"
+    >extraction template project</a
+  >
+  on GitHub.
+</p>
